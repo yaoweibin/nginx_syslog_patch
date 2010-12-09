@@ -8,6 +8,8 @@ OR
 cd nginx-0.8.50
 patch -p1 < /path/to/this/directory/syslog_0.8.50.patch
 
+The syslog_0.8.50.patch is also compatible with Nginx_0.9.2.
+
 
 ==EXAMPLE==
 
@@ -73,6 +75,8 @@ Default: ${prefix}/logs/error.log
 Context: main, http, server, location
 
 Enable the error_log with the syslog and set its priority. The default priority is error. 
+
+Note: if you set the error_log directive in the main block, the syslog is switched on by default.
 
 ===ACCESS_LOG===
 Syntax: access_log off|[syslog[:emerg|alert|crit|error|warn|notice|info|debug]]['|'path] [format [buffer=size]]]
