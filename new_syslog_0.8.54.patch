@@ -16,7 +16,7 @@ index 357c6b2..53053da 100644
  
      cycle->conf_prefix.len = old_cycle->conf_prefix.len;
 diff --git a/src/core/ngx_log.c b/src/core/ngx_log.c
-index c0485c6..0e07b04 100644
+index c0485c6..649bc67 100644
 --- a/src/core/ngx_log.c
 +++ b/src/core/ngx_log.c
 @@ -9,6 +9,15 @@
@@ -149,7 +149,7 @@ index c0485c6..0e07b04 100644
 +    /* Don't send the debug level info to syslog */
 +    if (log->syslog_on && level < NGX_LOG_DEBUG) {
 +        /* write to syslog */
-+        syslog(log->priority, "%.*s", p - errstr_syslog, errstr_syslog);
++        syslog(log->priority, "%.*s", (int)(p - errstr_syslog), errstr_syslog);
 +    }
 +#else
      (void) ngx_write_fd(log->file->fd, errstr, p - errstr);
@@ -383,7 +383,7 @@ index 1054836..14288ee 100644
  void ngx_cdecl ngx_log_abort(ngx_err_t err, const char *fmt, ...);
  void ngx_cdecl ngx_log_stderr(ngx_err_t err, const char *fmt, ...);
 diff --git a/src/http/modules/ngx_http_log_module.c b/src/http/modules/ngx_http_log_module.c
-index 5f356c3..191a4a5 100644
+index 5f356c3..3724f27 100644
 --- a/src/http/modules/ngx_http_log_module.c
 +++ b/src/http/modules/ngx_http_log_module.c
 @@ -8,6 +8,11 @@
@@ -421,7 +421,7 @@ index 5f356c3..191a4a5 100644
  
 +    n = 0;
 +    if (log->syslog_on) {
-+        syslog(log->priority, "%.*s", len, buf);
++        syslog(log->priority, "%.*s", (int)len, buf);
 +    }
 +#endif
 +     
