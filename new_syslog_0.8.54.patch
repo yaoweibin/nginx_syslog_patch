@@ -576,7 +576,7 @@ index 5f356c3..3724f27 100644
      if (cf->args->nelts >= 3) {
          name = value[2];
 diff --git a/src/http/ngx_http_core_module.c b/src/http/ngx_http_core_module.c
-index 488688a..396ad6f 100644
+index 488688a..ca31cb2 100644
 --- a/src/http/ngx_http_core_module.c
 +++ b/src/http/ngx_http_core_module.c
 @@ -1404,6 +1404,9 @@ ngx_http_update_location_config(ngx_http_request_t *r)
@@ -609,7 +609,7 @@ index 488688a..396ad6f 100644
  
 +#if (NGX_ENABLE_SYSLOG)
 +    if (ngx_strncmp(value[1].data, "syslog", sizeof("syslog") - 1) == 0) {
-+        if (!cf->cycle->new_log.syslog_on) {
++        if (!cf->cycle->new_log.syslog_set) {
 +            ngx_conf_log_error(NGX_LOG_EMERG, cf, 0,
 +                    "You must set the syslog directive and enable it first.");
 +            return NGX_CONF_ERROR;
