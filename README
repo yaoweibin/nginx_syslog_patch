@@ -1,5 +1,12 @@
+
+== DESCRIPTION ==
+
+This is a syslog patch for Nginx-0.8.54+. With this patch, you can send your 
+access or error log to specific syslog facility and priority.
+
 ==INSTALLATION==
     
+#patch to your Nginx source file.
 cd nginx-0.8.54
 patch -p1 < /path/to/this/directory/new_syslog_0.8.54.patch
 
@@ -25,9 +32,6 @@ http {
         '"$status" $body_bytes_sent "$http_referer" '
         '"$http_user_agent" "$http_x_forwarded_for"';
 
-    sendfile        on;
-    keepalive_timeout  65;
-
     server {
         listen       80;
         server_name  localhost;
@@ -47,6 +51,19 @@ http {
 
         access_log  syslog:warn|logs/host2.access.log main;
         error_log syslog:warn|logs/host2.error.log;
+
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+    }
+
+    server {
+        listen       80;
+        server_name  www.test.com;
+
+        access_log  syslog:error main;
+        error_log syslog:error;
 
         location / {
             root   html;
@@ -83,6 +100,7 @@ Enable the access_log with the syslog and set its priority. The default priority
 
 
 ==CONTACT==
+
 Reporting a bug
 Questions/patches may be directed to Weibin Yao, yaoweibin@gmail.com.
 
