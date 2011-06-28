@@ -36,6 +36,7 @@ http {
         listen       80;
         server_name  localhost;
 
+        #send the log to syslog and file.
         access_log  syslog:notice|logs/host1.access.log main;
         error_log syslog:notice|logs/host1.error.log;
 
@@ -62,6 +63,7 @@ http {
         listen       80;
         server_name  www.test.com;
 
+        #send the log just to syslog.
         access_log  syslog:error main;
         error_log syslog:error;
 
@@ -87,7 +89,7 @@ Syntax: error_log [syslog[:emerg|alert|crit|error|warn|notice|info|debug]]['|'fi
 Default: ${prefix}/logs/error.log
 Context: main, http, server, location
 
-Enable the error_log with the syslog and set its priority. The default priority is error. 
+Enable the error_log with the syslog and set its priority. The default priority is error. The error log can be sent to syslog, file or both. 
 
 Note: if you set the error_log directive in the main block, the syslog is switched on by default.
 
@@ -96,7 +98,7 @@ Syntax: access_log off|[syslog[:emerg|alert|crit|error|warn|notice|info|debug]][
 Default: access_log logs/access.log combined
 Context: http, server, location
 
-Enable the access_log with the syslog and set its priority. The default priority is notice. 
+Enable the access_log with the syslog and set its priority. The default priority is notice. The access log can be sent to syslog, file or both.
 
 
 ==CONTACT==
