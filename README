@@ -8,7 +8,7 @@ access or error log to specific syslog facility and priority.
     
 #patch to your Nginx source file.
 cd nginx-0.8.54
-patch -p1 < /path/to/this/directory/new_syslog_0.8.54.patch
+patch -p1 < /path/to/this/directory/syslog_0.8.54.patch
 
 #add the module, New !!!
 ./configure --add-module=/path/to/this/directory
