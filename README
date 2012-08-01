@@ -6,12 +6,19 @@ access or error log to specific syslog facility and priority.
 
 ==INSTALLATION==
     
-#patch to your Nginx source file.
+#download the latest code
+git clone https://github.com/yaoweibin/nginx_syslog_patch
+
+#download the source code of Nginx
+wget http://nginx.org/download/nginx-0.8.54.tar.gz
+tar zxvf nginx-0.8.54
 cd nginx-0.8.54
+
+#patch to your Nginx source file.
 patch -p1 < /path/to/this/directory/syslog_0.8.54.patch
 
-#add the module, New !!!
-./configure --add-module=/path/to/this/directory
+#add the module
+./configure --add-module=/path/to/nginx_syslog_patch
 
 
 ==EXAMPLE==
