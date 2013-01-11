@@ -4,6 +4,11 @@
 This is a syslog patch for Nginx-0.8.54+. With this patch, you can send your 
 access or error log to specific syslog facility and priority.
 
+== COMPATIBLE ==
+
+syslog_1.2.0.patch could work with nginx-1.2.0 - nginx-1.3.9.
+syslog_1.3.11.patch could work with nginx-1.3.9+.
+
 ==INSTALLATION==
     
 #download the latest code
