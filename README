@@ -6,7 +6,8 @@ access or error log to specific syslog facility and priority.
 
 == COMPATIBLE ==
 
-syslog_1.2.0.patch could work with nginx-1.2.0 - nginx-1.3.9.
+syslog_1.2.0.patch could work with nginx-1.2.0 - nginx-1.2.6 and nginx-1.3.0 - nginx-1.3.9.
+syslog_1.2.7.patch could work with nginx-1.2.7+.
 syslog_1.3.11.patch could work with nginx-1.3.9+.
 syslog_1.3.14.patch could work with nginx-1.3.14+.
 
