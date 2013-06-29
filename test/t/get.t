@@ -15,7 +15,7 @@ __DATA__
     }
 --- request
 GET /
---- response_body_like: ^<.*>$
+--- response_body_like: ^.*$
 
 === TEST 2: get request with syslog directive
 --- main_config
@@ -36,7 +36,7 @@ GET /
 
 --- request
 GET /
---- response_body_like: ^<.*>$
+--- response_body_like: ^.*$
 
 === TEST 3: get request with syslog directive
 --- main_config
@@ -62,4 +62,4 @@ GET /
     }
 --- request
 GET /photo
---- response_body_like: ^<.*>$
+--- response_body_like: ^.*$
