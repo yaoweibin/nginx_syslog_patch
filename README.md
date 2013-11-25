@@ -103,9 +103,7 @@ http {
 
 ##SYSLOG
 Sytax: syslog auth|authpriv|cron|daemon|ftp|kern|local0-7|lpr|mail|news|syslog|user|uucp [program_name]
-
 Default: none
-
 Context: main
 
 
@@ -113,9 +111,7 @@ Enable the syslog and set its facility. The default program name is nginx.
 
 ## ERROR_LOG (pre 1.5.x)
 Syntax: error_log [syslog[:emerg|alert|crit|error|warn|notice|info|debug]]['|'file] [ debug | info | notice | warn | error | crit ]
-
 Default: ${prefix}/logs/error.log
-
 Context: main, http, server, location
 
 Enable the error_log with the syslog and set its priority. The default priority is error. The error log can be sent to syslog, file or both. 
@@ -125,7 +121,6 @@ Note: if you set the error_log directive in the main block, the syslog is switch
 ##ACCESS_LOG
 Syntax: access_log off|[syslog[:emerg|alert|crit|error|warn|notice|info|debug]]['|'path] [format [buffer=size]]]
 Default: access_log logs/access.log combined
-
 Context: http, server, location
 
 Enable the access_log with the syslog and set its priority. The default priority is notice. The access log can be sent to syslog, file or both.
