@@ -8,13 +8,14 @@ Only access log support is available for nginx 1.5.6. Feel free to contribute an
 Original patch by yaoweibin access log support by SplitIce (for http://www.x4b.net/)
 
 #COMPATIBLE
-
-syslog_1.2.0.patch could work with nginx-1.2.0 - nginx-1.2.6 and nginx-1.3.0 - nginx-1.3.9.
+```
+syslog_1.2.0.patch could work with nginx-1.2.0 - nginx-1.2.6 and nginx-1.3.0 - nginx-1.3.9
 syslog_1.2.7.patch could work with nginx-1.2.7+.
-syslog_1.3.11.patch could work with nginx-1.3.9+.
-syslog_1.3.14.patch could work with nginx-1.3.14+.
-syslog_1.4.0.patch could work with nginx-1.4.0+..
-syslog_1.5.6.patch could work with nginx-1.5.0+.
+syslog_1.3.11.patch could work with nginx-1.3.9
+syslog_1.3.14.patch could work with nginx-1.3.14+
+syslog_1.4.0.patch could work with nginx-1.4.0+
+syslog_1.5.6.patch could work with nginx-1.5.0+
+```
 
 #INSTALLATION
     
@@ -35,7 +36,8 @@ syslog_1.5.6.patch could work with nginx-1.5.0+.
 
 #EXAMPLE
 
-```worker_processes  1;
+```
+worker_processes  1;
 
 syslog local6 nginx;
 
@@ -93,7 +95,8 @@ http {
             index  index.html index.htm;
         }
     }
-}```
+}
+```
 
 
 #DIRECTIVES
