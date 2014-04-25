@@ -1,36 +1,42 @@
-
-== DESCRIPTION ==
+#DESCRIPTION
 
 This is a syslog patch for Nginx-0.8.54+. With this patch, you can send your 
 access or error log to specific syslog facility and priority.
 
-== COMPATIBLE ==
+Only access log support is available for nginx 1.5.6. Feel free to contribute an error_log patch. 
 
-syslog_1.2.0.patch could work with nginx-1.2.0 - nginx-1.2.6 and nginx-1.3.0 - nginx-1.3.9.
+Original patch by yaoweibin access log support by SplitIce (for http://www.x4b.net/)
+
+#COMPATIBLE
+```
+syslog_1.2.0.patch could work with nginx-1.2.0 - nginx-1.2.6 and nginx-1.3.0 - nginx-1.3.9
 syslog_1.2.7.patch could work with nginx-1.2.7+.
-syslog_1.3.11.patch could work with nginx-1.3.9+.
-syslog_1.3.14.patch could work with nginx-1.3.14+.
-syslog_1.4.0.patch could work with nginx-1.4.0+.
+syslog_1.3.11.patch could work with nginx-1.3.9
+syslog_1.3.14.patch could work with nginx-1.3.14+
+syslog_1.4.0.patch could work with nginx-1.4.0+
+syslog_1.5.6.patch could work with nginx-1.5.0+
+```
 
-==INSTALLATION==
+#INSTALLATION
     
-#download the latest code
-git clone https://github.com/yaoweibin/nginx_syslog_patch
+    #download the latest code
+    git clone https://github.com/splitice/nginx_syslog_patch
+    
+    #download the source code of Nginx
+    wget http://nginx.org/download/nginx-0.8.54.tar.gz
+    tar zxvf nginx-0.8.54
+    cd nginx-0.8.54
+    
+    #patch to your Nginx source file.
+    patch -p1 < /path/to/this/directory/syslog_0.8.54.patch
+    
+    #add the module
+    ./configure --add-module=/path/to/nginx_syslog_patch
+    
 
-#download the source code of Nginx
-wget http://nginx.org/download/nginx-0.8.54.tar.gz
-tar zxvf nginx-0.8.54
-cd nginx-0.8.54
+#EXAMPLE
 
-#patch to your Nginx source file.
-patch -p1 < /path/to/this/directory/syslog_0.8.54.patch
-
-#add the module
-./configure --add-module=/path/to/nginx_syslog_patch
-
-
-==EXAMPLE==
-
+```
 worker_processes  1;
 
 syslog local6 nginx;
@@ -53,6 +59,8 @@ http {
 
         #send the log to syslog and file.
         access_log  syslog:notice|logs/host1.access.log main;
+		
+		# pre 1.5.x
         error_log syslog:notice|logs/host1.error.log;
 
         location / {
@@ -88,41 +96,49 @@ http {
         }
     }
 }
+```
 
 
-==DIRECTIVES==
+#DIRECTIVES
 
-===SYSLOG===
+##SYSLOG
 Sytax: syslog auth|authpriv|cron|daemon|ftp|kern|local0-7|lpr|mail|news|syslog|user|uucp [program_name]
+
 Default: none
+
 Context: main
+
 
 Enable the syslog and set its facility. The default program name is nginx.
 
-===ERROR_LOG===
+## ERROR_LOG (pre 1.5.x)
 Syntax: error_log [syslog[:emerg|alert|crit|error|warn|notice|info|debug]]['|'file] [ debug | info | notice | warn | error | crit ]
+
 Default: ${prefix}/logs/error.log
+
 Context: main, http, server, location
 
 Enable the error_log with the syslog and set its priority. The default priority is error. The error log can be sent to syslog, file or both. 
 
 Note: if you set the error_log directive in the main block, the syslog is switched on by default.
 
-===ACCESS_LOG===
+##ACCESS_LOG
 Syntax: access_log off|[syslog[:emerg|alert|crit|error|warn|notice|info|debug]]['|'path] [format [buffer=size]]]
+
 Default: access_log logs/access.log combined
+
 Context: http, server, location
 
 Enable the access_log with the syslog and set its priority. The default priority is notice. The access log can be sent to syslog, file or both.
 
 
-==CONTACT==
+#CONTACT
 
 Reporting a bug
 Questions/patches may be directed to Weibin Yao, yaoweibin@gmail.com.
 
 
-==COPYRIGHT & LICENSE==
+#COPYRIGHT & LICENSE
 
 This patch is licensed under the BSD license.
 
