@@ -15,6 +15,7 @@ syslog_1.3.11.patch could work with nginx-1.3.9
 syslog_1.3.14.patch could work with nginx-1.3.14+
 syslog_1.4.0.patch could work with nginx-1.4.0+
 syslog_1.5.6.patch could work with nginx-1.5.0+
+syslog_1.7.0.patch could work with nginx-1.7.0+
 ```
 
 #INSTALLATION
