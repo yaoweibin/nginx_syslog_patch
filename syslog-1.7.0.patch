@@ -249,7 +249,7 @@
      ngx_http_log_fmt_t         *format;
      ngx_http_complex_value_t   *filter;
 +
-+f (NGX_ENABLE_SYSLOG)
++#if (NGX_ENABLE_SYSLOG)
 +    ngx_int_t                   priority;
 +    unsigned                    syslog_on:1;      /* unsigned :1 syslog_on */
 +#endif
